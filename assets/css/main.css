@@ -24,7 +24,6 @@ ul {
 .left-slanted {
   --head-color-opacity: 1;
   --head-backdrop-filter: none;
-  --head-foreground-color: 0 0% 100%;
   --head-tag-background: 0 0% 0% / 0.2;
   --head-width: 40%;
   --head-padding: 2rem calc(8.1vw + 2rem) 2rem 2rem;
@@ -36,7 +35,6 @@ ul {
 .right-slanted {
   --head-color-opacity: 1;
   --head-backdrop-filter: none;
-  --head-foreground-color: 0 0% 0%;
   --head-tag-background: 0 0% 0% / 0.05;
   --head-width: 50%;
   --head-padding: 2rem 2rem 2rem 7rem;
@@ -48,7 +46,6 @@ ul {
 .left-floating {
   --head-color-opacity: 0.35;
   --head-backdrop-filter: blur(5rem);
-  --head-foreground-color: 0 100% 100%;
   --head-tag-background: 0 0% 100% / 0.15;
   --head-width: 30rem;
   --head-padding: 2rem;
@@ -60,7 +57,6 @@ ul {
 .right-floating {
   --head-color-opacity: 0.35;
   --head-backdrop-filter: blur(5rem);
-  --head-foreground-color: 0 100% 100%;
   --head-tag-background: 0 0% 100% / 0.15;
   --head-width: 30rem;
   --head-padding: 2rem;
@@ -81,9 +77,9 @@ ul {
 }
 .head-content {
   padding: var(--head-padding);
-  background: hsl(var(--head-color)/var(--head-color-opacity));
+  background: hsl(var(--background-color)/var(--head-color-opacity));
   backdrop-filter: var(--head-backdrop-filter);
-  color: hsl(var(--head-foreground-color));
+  color: hsl(var(--text-color));
   height: auto;
   margin: var(--head-position);
   width: var(--head-width);
@@ -117,7 +113,7 @@ ul {
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
-  color: hsl(var(--head-foreground-color)/0.8);
+  color: hsl(var(--text-color)/0.8);
 }
 .tags .tag {
   padding: 0.5rem 1rem;
@@ -130,6 +126,8 @@ ul {
   display: flex;
   gap: 1rem;
   padding: 2rem;
+  justify-content: space-between;
+  font-size: 0.8rem;
 }
 
 .tool {
@@ -142,12 +140,25 @@ ul {
   border-radius: 0.2rem;
   color: white;
 }
-.tool .current, .tool-label {
+.tool-section {
   margin: 0 0 0.5rem;
+  height: 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.tool .current {
+  margin: 0 0 0.5rem;
+}
+.tool-label {
+  border-bottom: 1px solid #f0f0f0;
+  padding: 0 0 1rem;
+  margin: 0 0 1rem;
 }
 .tool .buttons {
   display: flex;
   gap: 0.5rem;
+  margin-left: auto;
 }
 
 /*# sourceMappingURL=main.css.map */

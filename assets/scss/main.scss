@@ -21,9 +21,9 @@
 
   &-content {
     padding: var(--head-padding);
-    background: color(--head-color, var(--head-color-opacity));
+    background: color(--background-color, var(--head-color-opacity));
     backdrop-filter: var(--head-backdrop-filter);
-    color: color(--head-foreground-color);
+    color: color(--text-color);
     height: auto;
     margin: var(--head-position);
     width: var(--head-width);
@@ -60,7 +60,7 @@
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
-  color: color(--head-foreground-color, 0.8);
+  color: color(--text-color, 0.8);
 
   .tag {
     padding: 0.5rem 1rem;
@@ -74,6 +74,8 @@
   display: flex;
   gap: 1rem;
   padding: 2rem;
+  justify-content: space-between;
+  font-size: 0.8rem;
 }
 
 .tool {
@@ -87,13 +89,27 @@
     color: white;
   }
 
-  .current,
-  &-label {
+  &-section {
     margin: 0 0 0.5rem;
+    height: 1.4rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .current {
+    margin: 0 0 0.5rem;
+  }
+
+  &-label {
+    border-bottom: 1px solid #f0f0f0;
+    padding: 0 0 1rem;
+    margin: 0 0 1rem;
   }
 
   .buttons {
     display: flex;
     gap: 0.5rem;
+    margin-left: auto;
   }
 }

@@ -15,7 +15,6 @@
 .left-slanted {
   --head-color-opacity: 1;
   --head-backdrop-filter: none;
-  --head-foreground-color: 0 0% 100%;
   --head-tag-background: 0 0% 0% / 0.2;
   --head-width: 40%;
   --head-padding: 2rem calc(8.1vw + 2rem) 2rem 2rem;
@@ -27,7 +26,6 @@
 .right-slanted {
   --head-color-opacity: 1;
   --head-backdrop-filter: none;
-  --head-foreground-color: 0 0% 0%;
   --head-tag-background: 0 0% 0% / 0.05;
   --head-width: 50%;
   --head-padding: 2rem 2rem 2rem 7rem;
@@ -39,7 +37,6 @@
 .left-floating {
   --head-color-opacity: 0.35;
   --head-backdrop-filter: blur(5rem);
-  --head-foreground-color: 0 100% 100%;
   --head-tag-background: 0 0% 100% / 0.15;
   --head-width: 30rem;
   --head-padding: 2rem;
@@ -51,7 +48,6 @@
 .right-floating {
   --head-color-opacity: 0.35;
   --head-backdrop-filter: blur(5rem);
-  --head-foreground-color: 0 100% 100%;
   --head-tag-background: 0 0% 100% / 0.15;
   --head-width: 30rem;
   --head-padding: 2rem;

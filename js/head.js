@@ -20,20 +20,27 @@ $(function() {
   const allStyleClasses = styles.map(style => style[0]).join(" ");
   var currentImage = 0;
   var currentStyle = 0;
-  var headColor = "--head-color: 0 0 0;";
-  var backgroundOverlayColor = "--background-overlay-color: 0 0 0;";
+  var backgroundColor = "--background-color: 0 0% 0%;";
+  var headColor = "--head-color: 0 0% 0%;";
+  var textColor = "--text-color: 0 0% 100%;"
+
+  var backgroundOverlayColor = "--background-overlay-color: 0 0% 0%;";
   var backgroundMixBlendMode = "--background-mix-blend-mode: normal;";
   var backgroundPosition = "--background-position: 50%";
   var displayOverlay = "--display-overlay: none;";
 
-  $(".content-background-color").on("input", getContentColor);
-  $(".background-overlay-color").on("input", getBackgroundColor);
+  $(".content-background-color").on("input", getBackgroundColor);
+  $("input[name=text-color]").on("input", getTextColor);
+  $(".head-color").on("input", getHeadColor);
+  $(".overlay-color").on("input", getOverlayColor);
   $("input[type=range]").on("input", getPosition);
   $(".mix-blend-mode").on("change", getMixBlendMode);
 
   function setStyle() {
     $("style.head-style").html(`
       .head {
+        ${backgroundColor}
+        ${textColor}
         ${headColor}
         ${backgroundPosition}
         ${backgroundOverlayColor}
@@ -73,15 +80,29 @@ $(function() {
     setCurrentStyle(currentStyle)
   });
 
-  function getContentColor() {
+  function getBackgroundColor() {
     let color = HexToHSL($(".content-background-color").val());
+
+    headColor = `--background-color: ${color.h} ${color.s}% ${color.l}%;`;
+    setStyle();
+  }
+
+  function getTextColor() {
+    let color = $("input[name=text-color]:checked").val();
+
+    textColor = `--text-color: ${color};`;
+    setStyle();
+  }
+
+  function getHeadColor() {
+    let color = HexToHSL($(".head-color").val());
 
     headColor = `--head-color: ${color.h} ${color.s}% ${color.l}%;`;
     setStyle();
   }
 
-  function getBackgroundColor() {
-    let color = HexToHSL($(".background-overlay-color").val());
+  function getOverlayColor() {
+    let color = HexToHSL($(".overlay-color").val());
 
     backgroundOverlayColor = `--background-overlay-color: ${color.h} ${color.s}% ${color.l}%;`;
     setStyle();
@@ -105,8 +126,10 @@ $(function() {
 
 
   function init() {
-    getContentColor();
     getBackgroundColor();
+    getTextColor();
+    getHeadColor();
+    getOverlayColor();
     getPosition();
   }
 
