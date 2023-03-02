@@ -1,0 +1,89 @@
+<!doctype html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Head builder</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] +
+    ':35729/livereload.js?snipver=1"></' + 'script>')
+  </script>
+
+  <link rel="stylesheet" href="assets/css/main.css">
+  <style class="head-style"></style>
+
+  <meta name="theme-color" content="#fafafa">
+</head>
+
+<body>
+  <section class="head">
+    <div class="head-background"></div>
+    <div class="head-content">
+      <div>
+        <h1 contenteditable="true">Head builder</h1>
+        <p contenteditable="true">(Re)build your head cause it aint pretty</p>
+        <ul class="tags">
+          <li class="tag">tag</li>
+          <li class="tag">another tag</li>
+          <li class="tag">you're it</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <div class="tools">
+    <div class="tool">
+      <h4 class="tool-label">Choose Image</h4>
+      <div class="current current-img">Current Image: <span class="current"></span></div>
+      <div class="buttons">
+        <button class="browse-img" data-direction="-1">prev</button>
+        <button class="browse-img" data-direction="1">next</button>
+      </div>
+    </div>
+    <div class="tool">
+      <h4 class="tool-label">Choose header style</h4>
+      <div class="current current-style">Current Style: <span class="current"></span></div>
+      <div class="buttons">
+        <button class="browse-style" data-direction="-1">prev</button>
+        <button class="browse-style" data-direction="1">next</button>
+      </div>
+    </div>
+    <div class="tool">
+      <h4 class="tool-label">Content</h4>
+      <strong>Color</strong>
+      <input type="color" class="content-background-color">
+    </div>
+    <div class="tool">
+      <h4 class="tool-label">Background</h4>
+      <strong>Vertical Position</strong>
+      <input type="range" min="0" max="100" step="1">
+      <span class="bp"></span><br>
+      <strong>Overlay color</strong>
+      <input type="color" class="background-overlay-color"><br>
+      <strong>Overlay Effect</strong>
+      <select class="mix-blend-mode">
+        <option value="none" default="true">None</option>
+        <option value="normal">Normal</option>
+        <option value="multiply">Multiply</option>
+        <option value="screen">Screen</option>
+        <option value="overlay">Overlay</option>
+        <option value="darken">Darken</option>
+        <option value="lighten">Lighten</option>
+        <option value="color-dodge">Color Dodge</option>
+        <option value="color-burn">Color Burn</option>
+        <option value="hard-light">Hard Light</option>
+        <option value="soft-light">Soft Light</option>
+        <option value="difference">Difference</option>
+        <option value="exclusion">Exclusion</option>
+        <option value="hue">Hue</option>
+        <option value="saturation">Saturation</option>
+        <option value="color">Color</option>
+        <option value="luminosity">Luminosity</option>
+      </select>
+    </div>
+  </div>
+
+  <script src="js/vendor/jquery-3.6.1.min.js"></script>
+  <script src="js/head.js"></script>
+</body>
+</html>

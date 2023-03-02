@@ -1,0 +1,61 @@
+// default variables
+:root {
+  --bg-pos-left: 0;
+  --bg-pos-right: 0;
+  --bg-pos-top: 0;
+  --bg-pos-bottom: 0;
+  --head-color: 355 50% 45%;
+  --background-position: 50%;
+  --background-mix-blend-mode: normal;
+  --background-overlay-color: transparent;
+  --display-overlay: none;
+}
+
+// themes
+.left-slanted {
+  --head-color-opacity: 1;
+  --head-backdrop-filter: none;
+  --head-foreground-color: 0 0% 100%;
+  --head-tag-background: 0 0% 0% / 0.2;
+  --head-width: 40%;
+  --head-padding: 2rem calc(8.1vw + 2rem) 2rem 2rem;
+  --head-position: 0 0 0 0;
+  --bg-pos-left: calc(var(--head-width) - 8.1%);
+  --clip-path: polygon(0% 0%, 100% 0%, 91.9% 100%, 0% 100%);
+}
+
+.right-slanted {
+  --head-color-opacity: 1;
+  --head-backdrop-filter: none;
+  --head-foreground-color: 0 0% 0%;
+  --head-tag-background: 0 0% 0% / 0.05;
+  --head-width: 50%;
+  --head-padding: 2rem 2rem 2rem 7rem;
+  --head-position: 0 0 0 calc(100% - var(--head-width) + 2rem);
+  --bg-pos-right: calc(var(--head-width) - 15%);
+  --clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 15% 100%);
+}
+
+.left-floating {
+  --head-color-opacity: 0.35;
+  --head-backdrop-filter: blur(5rem);
+  --head-foreground-color: 0 100% 100%;
+  --head-tag-background: 0 0% 100% / 0.15;
+  --head-width: 30rem;
+  --head-padding: 2rem;
+  --head-position: 2rem calc(100% - var(--head-width) - 2rem) 2rem 2rem;
+  --background-position: center;
+  --clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+
+.right-floating {
+  --head-color-opacity: 0.35;
+  --head-backdrop-filter: blur(5rem);
+  --head-foreground-color: 0 100% 100%;
+  --head-tag-background: 0 0% 100% / 0.15;
+  --head-width: 30rem;
+  --head-padding: 2rem;
+  --head-position: 2rem 2rem 2rem calc(100% - var(--head-width) - 2rem);
+  --background-position: center;
+  --clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+}

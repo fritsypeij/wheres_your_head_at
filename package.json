@@ -1,0 +1,16 @@
+{
+  "name": "wheres_your_head_at",
+  "version": "1.0.0",
+  "description": "[Check it out](https://defactosoftware.github.io/wheres_yor_head_at/)",
+  "main": "index.js",
+  "scripts": {
+    "sass-dev": "sass --watch --update --style=expanded assets/scss:assets/css",
+    "sass-prod": "sass --no-source-map --style=compressed assets/scss:assets/css"
+  },
+  "author": "Defacto Software",
+  "license": "ISC",
+  "devDependencies": {
+    "jquery": "^3.6.3",
+    "sass": "^1.58.3"
+  }
+}

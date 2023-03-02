@@ -1,0 +1,99 @@
+@import "stuff/reset";
+@import "stuff/variables";
+
+@function color($color, $alpha: 1) {
+  @if $alpha != 1 {
+    @return hsl(var($color) / $alpha);
+  } @else {
+    @return hsl(var($color));
+  }
+}
+
+* {
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.head {
+  min-height: 80vh;
+  display: flex;
+  position: relative;
+
+  &-content {
+    padding: var(--head-padding);
+    background: color(--head-color, var(--head-color-opacity));
+    backdrop-filter: var(--head-backdrop-filter);
+    color: color(--head-foreground-color);
+    height: auto;
+    margin: var(--head-position);
+    width: var(--head-width);
+    clip-path: var(--clip-path);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &-background {
+    position: absolute;
+    background-position: 50% var(--background-position);
+    background-size: cover;
+    left: var(--bg-pos-left);
+    right: var(--bg-pos-right);
+    top: var(--bg-pos-top);
+    bottom: var(--bg-pos-bottom);
+
+    &::after {
+      position: absolute;
+      content: "";
+      background: color(--background-overlay-color);
+      mix-blend-mode: var(--background-mix-blend-mode);
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      display: var(--display-overlay);
+    }
+  }
+}
+
+.tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  color: color(--head-foreground-color, 0.8);
+
+  .tag {
+    padding: 0.5rem 1rem;
+    border-radius: 10rem;
+    background: color(--head-tag-background);
+    backdrop-filter: blur(0.5rem);
+  }
+}
+
+.tools {
+  display: flex;
+  gap: 1rem;
+  padding: 2rem;
+}
+
+.tool {
+  min-width: 20rem;
+
+  button {
+    padding: 0.5rem;
+    background: rgb(60, 58, 191);
+    border: none;
+    border-radius: 0.2rem;
+    color: white;
+  }
+
+  .current,
+  &-label {
+    margin: 0 0 0.5rem;
+  }
+
+  .buttons {
+    display: flex;
+    gap: 0.5rem;
+  }
+}

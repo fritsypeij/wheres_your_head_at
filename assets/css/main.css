@@ -1,0 +1,153 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+  --bg-pos-left: 0;
+  --bg-pos-right: 0;
+  --bg-pos-top: 0;
+  --bg-pos-bottom: 0;
+  --head-color: 355 50% 45%;
+  --background-position: 50%;
+  --background-mix-blend-mode: normal;
+  --background-overlay-color: transparent;
+  --display-overlay: none;
+}
+
+.left-slanted {
+  --head-color-opacity: 1;
+  --head-backdrop-filter: none;
+  --head-foreground-color: 0 0% 100%;
+  --head-tag-background: 0 0% 0% / 0.2;
+  --head-width: 40%;
+  --head-padding: 2rem calc(8.1vw + 2rem) 2rem 2rem;
+  --head-position: 0 0 0 0;
+  --bg-pos-left: calc(var(--head-width) - 8.1%);
+  --clip-path: polygon(0% 0%, 100% 0%, 91.9% 100%, 0% 100%);
+}
+
+.right-slanted {
+  --head-color-opacity: 1;
+  --head-backdrop-filter: none;
+  --head-foreground-color: 0 0% 0%;
+  --head-tag-background: 0 0% 0% / 0.05;
+  --head-width: 50%;
+  --head-padding: 2rem 2rem 2rem 7rem;
+  --head-position: 0 0 0 calc(100% - var(--head-width) + 2rem);
+  --bg-pos-right: calc(var(--head-width) - 15%);
+  --clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 15% 100%);
+}
+
+.left-floating {
+  --head-color-opacity: 0.35;
+  --head-backdrop-filter: blur(5rem);
+  --head-foreground-color: 0 100% 100%;
+  --head-tag-background: 0 0% 100% / 0.15;
+  --head-width: 30rem;
+  --head-padding: 2rem;
+  --head-position: 2rem calc(100% - var(--head-width) - 2rem) 2rem 2rem;
+  --background-position: center;
+  --clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+
+.right-floating {
+  --head-color-opacity: 0.35;
+  --head-backdrop-filter: blur(5rem);
+  --head-foreground-color: 0 100% 100%;
+  --head-tag-background: 0 0% 100% / 0.15;
+  --head-width: 30rem;
+  --head-padding: 2rem;
+  --head-position: 2rem 2rem 2rem calc(100% - var(--head-width) - 2rem);
+  --background-position: center;
+  --clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+
+* {
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.head {
+  min-height: 80vh;
+  display: flex;
+  position: relative;
+}
+.head-content {
+  padding: var(--head-padding);
+  background: hsl(var(--head-color)/var(--head-color-opacity));
+  backdrop-filter: var(--head-backdrop-filter);
+  color: hsl(var(--head-foreground-color));
+  height: auto;
+  margin: var(--head-position);
+  width: var(--head-width);
+  clip-path: var(--clip-path);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.head-background {
+  position: absolute;
+  background-position: 50% var(--background-position);
+  background-size: cover;
+  left: var(--bg-pos-left);
+  right: var(--bg-pos-right);
+  top: var(--bg-pos-top);
+  bottom: var(--bg-pos-bottom);
+}
+.head-background::after {
+  position: absolute;
+  content: "";
+  background: hsl(var(--background-overlay-color));
+  mix-blend-mode: var(--background-mix-blend-mode);
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: var(--display-overlay);
+}
+
+.tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  color: hsl(var(--head-foreground-color)/0.8);
+}
+.tags .tag {
+  padding: 0.5rem 1rem;
+  border-radius: 10rem;
+  background: hsl(var(--head-tag-background));
+  backdrop-filter: blur(0.5rem);
+}
+
+.tools {
+  display: flex;
+  gap: 1rem;
+  padding: 2rem;
+}
+
+.tool {
+  min-width: 20rem;
+}
+.tool button {
+  padding: 0.5rem;
+  background: rgb(60, 58, 191);
+  border: none;
+  border-radius: 0.2rem;
+  color: white;
+}
+.tool .current, .tool-label {
+  margin: 0 0 0.5rem;
+}
+.tool .buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/*# sourceMappingURL=main.css.map */
