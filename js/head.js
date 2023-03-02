@@ -20,13 +20,13 @@ $(function() {
   const allStyleClasses = styles.map(style => style[0]).join(" ");
   var currentImage = 0;
   var currentStyle = 0;
+
   var backgroundColor = "--background-color: 0 0% 0%;";
   var headColor = "--head-color: 0 0% 0%;";
   var textColor = "--text-color: 0 0% 100%;"
-
+  var backgroundPosition = "--background-position: 50%";
   var backgroundOverlayColor = "--background-overlay-color: 0 0% 0%;";
   var backgroundMixBlendMode = "--background-mix-blend-mode: normal;";
-  var backgroundPosition = "--background-position: 50%";
   var displayOverlay = "--display-overlay: none;";
 
   $(".content-background-color").on("input", getBackgroundColor);
@@ -40,8 +40,8 @@ $(function() {
     $("style.head-style").html(`
       .head {
         ${backgroundColor}
-        ${textColor}
         ${headColor}
+        ${textColor}
         ${backgroundPosition}
         ${backgroundOverlayColor}
         ${backgroundMixBlendMode}
@@ -56,8 +56,7 @@ $(function() {
   }
 
   function setCurrentStyle(index) {
-    $(".head").removeClass(allStyleClasses);
-    $(".head").addClass(styles[index][0]);
+    $(".head").removeClass(allStyleClasses).addClass(styles[index][0]);
     $(".current-style .current").text(styles[currentStyle][1]);
   }
 
@@ -83,7 +82,7 @@ $(function() {
   function getBackgroundColor() {
     let color = HexToHSL($(".content-background-color").val());
 
-    headColor = `--background-color: ${color.h} ${color.s}% ${color.l}%;`;
+    backgroundColor = `--background-color: ${color.h} ${color.s}% ${color.l}%;`;
     setStyle();
   }
 
@@ -130,6 +129,7 @@ $(function() {
     getTextColor();
     getHeadColor();
     getOverlayColor();
+    getMixBlendMode();
     getPosition();
   }
 

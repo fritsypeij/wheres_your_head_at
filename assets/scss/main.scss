@@ -19,6 +19,10 @@
   display: flex;
   position: relative;
 
+  h1, h2, h3, h4, h5, h6 {
+    color: color(--head-color);
+  }
+
   &-content {
     padding: var(--head-padding);
     background: color(--background-color, var(--head-color-opacity));

@@ -75,6 +75,9 @@ ul {
   display: flex;
   position: relative;
 }
+.head h1, .head h2, .head h3, .head h4, .head h5, .head h6 {
+  color: hsl(var(--head-color));
+}
 .head-content {
   padding: var(--head-padding);
   background: hsl(var(--background-color)/var(--head-color-opacity));
