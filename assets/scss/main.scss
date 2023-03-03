@@ -95,14 +95,6 @@
 .tool {
   min-width: 20rem;
 
-  button {
-    background: rgb(60, 58, 191);
-    border: none;
-    border-radius: 0.2rem;
-    color: white;
-    padding: 0.5rem;
-  }
-
   &-section {
     align-items: center;
     display: flex;
@@ -126,4 +118,12 @@
     gap: 0.5rem;
     margin-left: auto;
   }
+}
+
+button {
+  background: rgb(60, 58, 191);
+  border: none;
+  border-radius: 0.2rem;
+  color: white;
+  padding: 0.5rem;
 }

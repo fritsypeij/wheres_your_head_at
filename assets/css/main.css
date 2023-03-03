@@ -151,13 +151,6 @@ ul {
 .tool {
   min-width: 20rem;
 }
-.tool button {
-  background: rgb(60, 58, 191);
-  border: none;
-  border-radius: 0.2rem;
-  color: white;
-  padding: 0.5rem;
-}
 .tool-section {
   align-items: center;
   display: flex;
@@ -177,6 +170,14 @@ ul {
   display: flex;
   gap: 0.5rem;
   margin-left: auto;
+}
+
+button {
+  background: rgb(60, 58, 191);
+  border: none;
+  border-radius: 0.2rem;
+  color: white;
+  padding: 0.5rem;
 }
 
 /*# sourceMappingURL=main.css.map */

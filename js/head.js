@@ -18,6 +18,7 @@ $(function() {
   const imageCount = images.length - 1;
   const styleCount = styles.length - 1;
   const allStyleClasses = styles.map(style => style[0]).join(" ");
+  const presets = JSON.parse(localStorage.getItem("presets")) || [];
   var currentImage = 0;
   var currentStyle = 0;
 
@@ -35,6 +36,8 @@ $(function() {
   $(".overlay-color").on("input", getOverlayColor);
   $("input[type=range]").on("input", getPosition);
   $(".mix-blend-mode").on("change", getMixBlendMode);
+  $(".save-preset").on("click", savePreset);
+  $(".load-preset").on("click", loadPreset);
 
   function setStyle() {
     $("style.head-style").html(`
@@ -140,8 +143,67 @@ $(function() {
     setStyle();
   }
 
+  function savePreset() {
+    let name = prompt("Naam van preset");
+    if (name == null) return;
+
+    let preset = {
+      name: name,
+      image: currentImage,
+      style: currentStyle,
+      backgroundColor: $(".content-background-color").val(),
+      textColor: $("input[name=text-color]:checked").val(),
+      headColor: $(".head-color").val(),
+      overlayColor: $(".overlay-color").val(),
+      mixBlendMode: $(".mix-blend-mode").val(),
+      position: $("input[type=range]").val()
+    };
+
+    presets.push(preset);
+
+    updatePresetsList();
+
+    localStorage.setItem("presets", JSON.stringify(presets));
+  }
+
+  function loadPreset() {
+    console.log("load");
+    let index = $("select.presets").val();
+    let preset = presets[index];
+
+    setCurrentImage(preset.image);
+    setCurrentStyle(preset.style);
+
+    $(".content-background-color").val(preset.backgroundColor);
+    $("input[name=text-color][value='" + preset.textColor + "']").prop("checked", true);
+    $(".head-color").val(preset.headColor);
+    $(".overlay-color").val(preset.overlayColor);
+    $(".mix-blend-mode").val(preset.mixBlendMode);
+    $("input[type=range]")[0].value = preset.position;
+
+    getBackgroundColor();
+    getTextColor();
+    getHeadColor();
+    getOverlayColor();
+    getMixBlendMode();
+    getPosition();
+  }
+
+  function updatePresetsList() {
+    $("select.presets").html("");
+
+    presets.forEach((preset, index) => {
+      $("select.presets").append(`<option value="${index}">${preset.name}</option>`);
+    });
+
+    if (presets.length) {
+      $(".load-preset").prop("disabled", false);
+    }
+  }
 
   function init() {
+    updatePresetsList();
+
     getBackgroundColor();
     getTextColor();
     getHeadColor();
