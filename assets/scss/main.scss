@@ -125,5 +125,32 @@ button {
   border: none;
   border-radius: 0.2rem;
   color: white;
+  cursor: pointer;
   padding: 0.5rem;
+
+  &:disabled {
+    background: rgb(202, 202, 205);
+    cursor: default;
+  }
+
+  &.active {
+    background: rgb(66, 63, 230);
+  }
+}
+
+.presets {
+  border-top: 1px solid #f0f0f0;
+  display: flex;
+  gap: 2rem;
+  justify-content: space-between;
+  padding: 1rem;
+
+  &-section {
+    display: flex;
+    gap: 0.5rem;
+  }
+  strong {
+    align-items: center;
+    display: flex;
+  }
 }

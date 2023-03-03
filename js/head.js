@@ -38,6 +38,7 @@ $(function() {
   $(".mix-blend-mode").on("change", getMixBlendMode);
   $(".save-preset").on("click", savePreset);
   $(".load-preset").on("click", loadPreset);
+  $("select.presets-selector").on("change", canLoadPreset);
 
   function setStyle() {
     $("style.head-style").html(`
@@ -168,7 +169,7 @@ $(function() {
 
   function loadPreset() {
     console.log("load");
-    let index = $("select.presets").val();
+    let index = $("select.presets-selector").val();
     let preset = presets[index];
 
     setCurrentImage(preset.image);
@@ -190,15 +191,15 @@ $(function() {
   }
 
   function updatePresetsList() {
-    $("select.presets").html("");
+    $("select.presets-selector").html("<option>None</option>");
 
     presets.forEach((preset, index) => {
-      $("select.presets").append(`<option value="${index}">${preset.name}</option>`);
+      $("select.presets-selector").append(`<option value="${index}">${preset.name}</option>`);
     });
+  }
 
-    if (presets.length) {
-      $(".load-preset").prop("disabled", false);
-    }
+  function canLoadPreset() {
+    $(".load-preset").prop("disabled", $("select.presets-selector").val() == "None");
   }
 
   function init() {
