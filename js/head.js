@@ -86,24 +86,16 @@ $(function() {
 
   function getBackgroundColor() {
     let color = HexToHSL($(".content-background-color").val());
+    let lightness = color.l < 45 ? 100 : 0;
 
     backgroundColor = `--background-color: ${color.h} ${color.s}% ${color.l}%;`;
+    textColor = `--text-color: 0 0% ${lightness}%;`;
+    $(`input[name=text-color]`).filter(`[value="0 0% ${lightness}%"]`).prop('checked', true);
 
-    if (color.l < 45) {
-      textColor = "--text-color: 0 0% 100%;";
-      $(`input[name=text-color]`).filter('[value="0 0% 100%"]').prop('checked', true);
-
-      if (headColor == "--head-color: 0 0% 0%;") {
-        headColor = `--head-color: 0 0% 100%;`
-      }
-
-    } else {
-      textColor = "--text-color: 0 0% 0%;";
-      $(`input[name=text-color]`).filter('[value="0 0% 0%"]').prop('checked', true);
-
-      if (headColor == "--head-color: 0 0% 100%;") {
-        headColor = `--head-color: 0 0% 0%;`
-      }
+    if (headColor == "--head-color: 0 0% 0%;"  && lightness == 100) {
+      headColor = `--head-color: 0 0% 100%;`
+    } else if (headColor == "--head-color: 0 0% 100%;" && lightness == 0) {
+      headColor = `--head-color: 0 0% 0%;`
     }
 
     setStyle();
