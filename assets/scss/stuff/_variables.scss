@@ -13,10 +13,10 @@
 
 // themes
 .left-slanted {
-  --head-color-opacity: 1;
-  --head-backdrop-filter: none;
-  --head-tag-background: 0 0% 0% / 0.2;
-  --head-width: 40%;
+  --head-color-opacity: 0.9;
+  --head-backdrop-filter: blur(50rem);
+  --head-tag-background: 0 0% 0% / 0.1;
+  --head-width: 50%;
   --head-padding: 2rem calc(8.1vw + 2rem) 2rem 2rem;
   --head-position: 0 0 0 0;
   --bg-pos-left: calc(var(--head-width) - 8.1%);

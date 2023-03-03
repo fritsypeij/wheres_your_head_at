@@ -22,10 +22,10 @@ ul {
 }
 
 .left-slanted {
-  --head-color-opacity: 1;
-  --head-backdrop-filter: none;
-  --head-tag-background: 0 0% 0% / 0.2;
-  --head-width: 40%;
+  --head-color-opacity: 0.9;
+  --head-backdrop-filter: blur(50rem);
+  --head-tag-background: 0 0% 0% / 0.1;
+  --head-width: 50%;
   --head-padding: 2rem calc(8.1vw + 2rem) 2rem 2rem;
   --head-position: 0 0 0 0;
   --bg-pos-left: calc(var(--head-width) - 8.1%);
@@ -66,97 +66,112 @@ ul {
 }
 
 * {
-  transition: all 0.3s ease;
   box-sizing: border-box;
+  transition: all 0.3s ease;
 }
 
 .head {
-  min-height: 80vh;
   display: flex;
+  font-weight: 100;
+  line-height: 1.6;
+  min-height: 80vh;
   position: relative;
+}
+.head h1 {
+  font-size: 3rem;
+}
+.head h2 {
+  font-size: 2rem;
+}
+.head h3 {
+  font-size: 1.5rem;
 }
 .head h1, .head h2, .head h3, .head h4, .head h5, .head h6 {
   color: hsl(var(--head-color));
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 1.3rem;
 }
 .head-content {
-  padding: var(--head-padding);
-  background: hsl(var(--background-color)/var(--head-color-opacity));
-  backdrop-filter: var(--head-backdrop-filter);
-  color: hsl(var(--text-color));
-  height: auto;
-  margin: var(--head-position);
-  width: var(--head-width);
-  clip-path: var(--clip-path);
-  display: flex;
   align-items: center;
+  backdrop-filter: var(--head-backdrop-filter);
+  background: hsl(var(--background-color)/var(--head-color-opacity));
+  clip-path: var(--clip-path);
+  color: hsl(var(--text-color));
+  display: flex;
+  height: auto;
   justify-content: center;
+  margin: var(--head-position);
+  padding: var(--head-padding);
+  width: var(--head-width);
 }
 .head-background {
-  position: absolute;
   background-position: 50% var(--background-position);
   background-size: cover;
+  bottom: var(--bg-pos-bottom);
   left: var(--bg-pos-left);
+  position: absolute;
   right: var(--bg-pos-right);
   top: var(--bg-pos-top);
-  bottom: var(--bg-pos-bottom);
 }
 .head-background::after {
-  position: absolute;
-  content: "";
   background: hsl(var(--background-overlay-color));
-  mix-blend-mode: var(--background-mix-blend-mode);
+  bottom: 0;
+  content: "";
+  display: var(--display-overlay);
   left: 0;
+  mix-blend-mode: var(--background-mix-blend-mode);
+  position: absolute;
   right: 0;
   top: 0;
-  bottom: 0;
-  display: var(--display-overlay);
 }
 
 .tags {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
   color: hsl(var(--text-color)/0.8);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.5rem 0;
 }
 .tags .tag {
-  padding: 0.5rem 1rem;
-  border-radius: 10rem;
-  background: hsl(var(--head-tag-background));
   backdrop-filter: blur(0.5rem);
+  background: hsl(var(--head-tag-background));
+  border-radius: 10rem;
+  padding: 0.4rem 1rem;
 }
 
 .tools {
   display: flex;
-  gap: 1rem;
-  padding: 2rem;
-  justify-content: space-between;
   font-size: 0.8rem;
+  gap: 1rem;
+  justify-content: space-between;
+  padding: 2rem;
 }
 
 .tool {
   min-width: 20rem;
 }
 .tool button {
-  padding: 0.5rem;
   background: rgb(60, 58, 191);
   border: none;
   border-radius: 0.2rem;
   color: white;
+  padding: 0.5rem;
 }
 .tool-section {
-  margin: 0 0 0.5rem;
-  height: 1.4rem;
-  display: flex;
   align-items: center;
+  display: flex;
   gap: 1rem;
+  height: 1.4rem;
+  margin: 0 0 0.5rem;
 }
 .tool .current {
   margin: 0 0 0.5rem;
 }
 .tool-label {
   border-bottom: 1px solid #f0f0f0;
-  padding: 0 0 1rem;
   margin: 0 0 1rem;
+  padding: 0 0 1rem;
 }
 .tool .buttons {
   display: flex;

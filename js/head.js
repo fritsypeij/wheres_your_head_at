@@ -83,6 +83,23 @@ $(function() {
     let color = HexToHSL($(".content-background-color").val());
 
     backgroundColor = `--background-color: ${color.h} ${color.s}% ${color.l}%;`;
+
+    if (color.l < 45) {
+      textColor = "--text-color: 0 0% 100%;";
+
+      if (headColor == "--head-color: 0 0% 0%;") {
+        headColor = `--head-color: 0 0% 100%;`
+      }
+
+    } else {
+      textColor = "--text-color: 0 0% 0%;";
+
+      if (headColor == "--head-color: 0 0% 100%;") {
+        headColor = `--head-color: 0 0% 0%;`
+      }
+    }
+
+
     setStyle();
   }
 
