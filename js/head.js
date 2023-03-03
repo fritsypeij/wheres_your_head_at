@@ -191,7 +191,7 @@ $(function() {
   }
 
   function updatePresetsList() {
-    $("select.presets-selector").html("<option>None</option>");
+    $("select.presets-selector").html("<option>None</option><option disabled>──────────</option>");
 
     presets.forEach((preset, index) => {
       $("select.presets-selector").append(`<option value="${index}">${preset.name}</option>`);

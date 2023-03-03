@@ -14,11 +14,17 @@
   transition: all 0.3s ease;
 }
 
+body {
+  display: flex;
+  max-height: 100vh;
+  flex-direction: column;
+}
+
 .head {
   display: flex;
   font-weight: 100;
+  flex: 1 1 80vh;
   line-height: 1.6;
-  min-height: 80vh;
   position: relative;
 
   h1 { font-size: 3rem; }
@@ -153,4 +159,8 @@ button {
     align-items: center;
     display: flex;
   }
+}
+
+.workbench {
+  background-color: white;
 }
