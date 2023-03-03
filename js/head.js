@@ -25,7 +25,6 @@ $(function() {
   var backgroundColor = "--background-color: 0 0% 0%;";
   var headColor = "--head-color: 0 0% 0%;";
   var textColor = "--text-color: 0 0% 100%;"
-  var backgroundPosition = "--background-position: 50%";
   var backgroundOverlayColor = "--background-overlay-color: 0 0% 0%;";
   var backgroundMixBlendMode = "--background-mix-blend-mode: normal;";
   var displayOverlay = "--display-overlay: none;";
@@ -48,7 +47,6 @@ $(function() {
         ${backgroundColor}
         ${headColor}
         ${textColor}
-        ${backgroundPosition}
         ${backgroundOverlayColor}
         ${backgroundMixBlendMode}
         ${displayOverlay}
@@ -230,10 +228,11 @@ $(function() {
 
   function getData() {
     getBackgroundColor();
-    getTextColor();
     getHeadColor();
     getOverlayColor();
     getMixBlendMode();
+    getTextColor();
+
     // getPoi();
   }
 
