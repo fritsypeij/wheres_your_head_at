@@ -16,14 +16,14 @@
 
 body {
   display: flex;
-  max-height: 100vh;
   flex-direction: column;
+  max-height: 100vh;
 }
 
 .head {
   display: flex;
-  font-weight: 100;
   flex: 1 1 80vh;
+  font-weight: 100;
   line-height: 1.6;
   position: relative;
 
@@ -60,6 +60,7 @@ body {
     position: absolute;
     right: var(--bg-pos-right);
     top: var(--bg-pos-top);
+    z-index: 0;
 
     &::after {
       background: color(--background-overlay-color);
