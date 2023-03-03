@@ -91,6 +91,7 @@ $(function() {
 
     if (color.l < 45) {
       textColor = "--text-color: 0 0% 100%;";
+      $(`input[name=text-color]`).filter('[value="0 0% 100%"]').prop('checked', true);
 
       if (headColor == "--head-color: 0 0% 0%;") {
         headColor = `--head-color: 0 0% 100%;`
@@ -98,12 +99,12 @@ $(function() {
 
     } else {
       textColor = "--text-color: 0 0% 0%;";
+      $(`input[name=text-color]`).filter('[value="0 0% 0%"]').prop('checked', true);
 
       if (headColor == "--head-color: 0 0% 100%;") {
         headColor = `--head-color: 0 0% 0%;`
       }
     }
-
 
     setStyle();
   }
