@@ -38,7 +38,8 @@ $(function() {
   $(".mix-blend-mode").on("change", getMixBlendMode);
   $(".save-preset").on("click", savePreset);
   $(".load-preset").on("click", loadPreset);
-  $("select.presets-selector").on("change", canLoadPreset);
+  $(".delete-preset").on("click", deletePreset);
+  $("select.presets-selector").on("change", enablePresetButtons);
 
   function setStyle() {
     $("style.head-style").html(`
@@ -145,6 +146,7 @@ $(function() {
   }
 
   function savePreset() {
+    console.log("save", currentImage);
     let name = prompt("Naam van preset");
     if (name == null) return;
 
@@ -168,12 +170,11 @@ $(function() {
   }
 
   function loadPreset() {
-    console.log("load");
     let index = $("select.presets-selector").val();
     let preset = presets[index];
 
-    setCurrentImage(preset.image);
-    setCurrentStyle(preset.style);
+    setCurrentImage(currentImage = preset.image);
+    setCurrentStyle(currentStyle = preset.style);
 
     $(".content-background-color").val(preset.backgroundColor);
     $("input[name=text-color][value='" + preset.textColor + "']").prop("checked", true);
@@ -182,12 +183,17 @@ $(function() {
     $(".mix-blend-mode").val(preset.mixBlendMode);
     $("input[type=range]")[0].value = preset.position;
 
-    getBackgroundColor();
-    getTextColor();
-    getHeadColor();
-    getOverlayColor();
-    getMixBlendMode();
-    getPosition();
+    getData();
+  }
+
+  function deletePreset() {
+    let index = $("select.presets-selector").val();
+
+    presets.splice(index, 1);
+
+    updatePresetsList();
+
+    localStorage.setItem("presets", JSON.stringify(presets));
   }
 
   function updatePresetsList() {
@@ -198,13 +204,16 @@ $(function() {
     });
   }
 
-  function canLoadPreset() {
-    $(".load-preset").prop("disabled", $("select.presets-selector").val() == "None");
+  function enablePresetButtons() {
+    $(".load-preset, .delete-preset").prop("disabled", $("select.presets-selector").val() == "None");
   }
 
   function init() {
     updatePresetsList();
+    getData();
+  }
 
+  function getData() {
     getBackgroundColor();
     getTextColor();
     getHeadColor();
