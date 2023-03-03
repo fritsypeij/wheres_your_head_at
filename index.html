@@ -72,9 +72,18 @@
           </div>
         </div>
         <div class="tool-section">
-          <strong>Vertical Position</strong>
-          <input type="range" min="0" max="100" step="1">
-          <span class="bp"></span>
+          <strong>Image Position</strong>
+          <dialog id="set-poi">
+            <h2>Set Point of Interest</h2>
+            <p>Click on the point of interest in the image. This will ensure that this part will always be visible regardless of the screen size and orientation.</p>
+            <div class="image-container">
+              <img src="" alt="placeholder">
+              <div class="poi"></div>
+            </div>
+            <button class="close">Ok</button>
+          </dialog>
+          <!-- <input type="range" min="0" max="100" step="1"> -->
+          <button class="set-poi">Set Point of interest</button>
         </div>
       </div>
       <div class="tool">

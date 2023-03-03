@@ -53,7 +53,7 @@ body {
   }
 
   &-background {
-    background-position: 50% var(--background-position);
+    background-position: var(--poi);
     background-size: cover;
     bottom: var(--bg-pos-bottom);
     left: var(--bg-pos-left);
@@ -164,4 +164,37 @@ button {
 
 .workbench {
   background-color: white;
+}
+
+#set-poi {
+  max-height: 80vh;
+  max-width: 80vw;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+
+  .image-container {
+    position: relative;
+    width: fit-content;
+    margin: 0 auto;
+  }
+
+  .poi {
+    position: absolute;
+    height: 6px;
+    width: 6px;
+    margin: -3px;
+    border-radius: 50%;
+    background: lime;
+  }
+
+  img {
+    height: auto;
+    width: auto;
+    max-height: 60vh;
+    max-width: 100%;
+    cursor: crosshair;
+  }
 }

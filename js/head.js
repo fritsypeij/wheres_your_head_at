@@ -29,12 +29,13 @@ $(function() {
   var backgroundOverlayColor = "--background-overlay-color: 0 0% 0%;";
   var backgroundMixBlendMode = "--background-mix-blend-mode: normal;";
   var displayOverlay = "--display-overlay: none;";
+  var poi = "--poi: 50% 50%;";
 
   $(".content-background-color").on("input", getBackgroundColor);
   $("input[name=text-color]").on("input", getTextColor);
   $(".head-color").on("input", getHeadColor);
   $(".overlay-color").on("input", getOverlayColor);
-  $("input[type=range]").on("input", getPosition);
+  $(".set-poi").on("click", getPoi);
   $(".mix-blend-mode").on("change", getMixBlendMode);
   $(".save-preset").on("click", savePreset);
   $(".load-preset").on("click", loadPreset);
@@ -51,6 +52,7 @@ $(function() {
         ${backgroundOverlayColor}
         ${backgroundMixBlendMode}
         ${displayOverlay}
+        ${poi}
       }
     `);
   }
@@ -130,12 +132,32 @@ $(function() {
     setStyle();
   }
 
-  function getPosition() {
-    let input = $("input[type=range]")[0];
-    let value = input.value;
+  function getPoi() {
+    const $dialog = $("dialog#set-poi");
+    const $poiDot = $(".poi");
+    $dialog.find("img").attr("src", images[currentImage][0]);
+    $dialog.show();
 
-    backgroundPosition = `--background-position: ${value}%;`;
-    setStyle();
+    $dialog.find("img").on("click", function(e) {
+      let x = e.offsetX;
+      let y = e.offsetY;
+      let width = $(this).width();
+      let height = $(this).height();
+
+      let positionX = (x / width) * 100;
+      let positionY = (y / height) * 100;
+
+      $poiDot.css("left", `${positionX}%`);
+      $poiDot.css("top", `${positionY}%`);
+
+      poi = `--poi: ${positionX}% ${positionY}%;`;
+      setStyle();
+    });
+
+    $dialog.find("button").on("click", function() {
+
+      $dialog.hide();
+    });
   }
 
   function savePreset() {
@@ -152,7 +174,7 @@ $(function() {
       headColor: $(".head-color").val(),
       overlayColor: $(".overlay-color").val(),
       mixBlendMode: $(".mix-blend-mode").val(),
-      position: $("input[type=range]").val()
+      poi: poi
     };
 
     presets.push(preset);
@@ -174,7 +196,7 @@ $(function() {
     $(".head-color").val(preset.headColor);
     $(".overlay-color").val(preset.overlayColor);
     $(".mix-blend-mode").val(preset.mixBlendMode);
-    $("input[type=range]")[0].value = preset.position;
+    poi = preset.poi;
 
     getData();
   }
@@ -212,7 +234,7 @@ $(function() {
     getHeadColor();
     getOverlayColor();
     getMixBlendMode();
-    getPosition();
+    // getPoi();
   }
 
   init();
