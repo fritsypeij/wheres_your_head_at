@@ -19,6 +19,8 @@ ul {
   --background-mix-blend-mode: normal;
   --background-overlay-color: transparent;
   --display-overlay: none;
+  --background: 200 20% 95%;
+  --body: 200 20% 5%;
 }
 
 .left-slanted {
@@ -63,6 +65,77 @@ ul {
   --head-position: 2rem 2rem 2rem calc(100% - var(--head-width) - 2rem);
   --background-position: center;
   --clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+
+@keyframes dialog-show {
+  from {
+    opacity: 0;
+    transform: translateY(-20%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+@keyframes dialog-backdrop {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+dialog {
+  border: none;
+  border-radius: 0.25rem;
+  box-shadow: 0 1rem 1.5rem rgba(0, 0, 0, 0.2);
+  color: var(--body);
+  min-width: 30rem;
+  padding: 1.5rem;
+}
+dialog[open] {
+  animation: dialog-show 0.2s ease normal;
+}
+dialog[open]::backdrop {
+  animation: dialog-backdrop 0.2s ease normal;
+}
+dialog::backdrop {
+  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.6);
+  transition: all 0.2s ease;
+}
+dialog .close-dialog {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  padding: 1rem;
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
+}
+dialog .close-dialog:focus {
+  outline: none;
+}
+dialog .close-dialog .icon {
+  height: 1.2rem;
+  width: 1.2rem;
+}
+dialog .dialog-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin: 0;
+  padding: 0 4rem 1.5rem 0;
+}
+dialog .dialog-actions {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+}
+dialog select {
+  width: 100%;
 }
 
 * {
@@ -162,7 +235,7 @@ body {
   align-items: center;
   display: flex;
   gap: 1rem;
-  height: 1.4rem;
+  min-height: 1.4rem;
   margin: 0 0 0.5rem;
 }
 .tool .current {
@@ -216,33 +289,78 @@ button.active {
 }
 
 #set-poi {
+  display: none;
+  left: 50%;
   max-height: 80vh;
   max-width: 80vw;
   position: fixed;
   top: 50%;
-  left: 50%;
   transform: translate(-50%, -50%);
-  display: none;
 }
 #set-poi .image-container {
+  cursor: crosshair;
+  margin: 0 auto 1rem;
   position: relative;
   width: fit-content;
-  margin: 0 auto;
+}
+#set-poi .image-container::after {
+  bottom: 0;
+  content: "";
+  display: block;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1;
 }
 #set-poi .poi {
-  position: absolute;
-  height: 6px;
-  width: 6px;
-  margin: -3px;
-  border-radius: 50%;
   background: lime;
+  border-radius: 50%;
+  height: 6px;
+  left: 50%;
+  margin: -3px;
+  position: absolute;
+  top: 50%;
+  width: 6px;
 }
 #set-poi img {
+  display: block;
   height: auto;
-  width: auto;
   max-height: 60vh;
   max-width: 100%;
-  cursor: crosshair;
+  width: auto;
+}
+
+.image-demos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+  width: 50vw;
+  margin-bottom: 1rem;
+}
+.image-demos .image-demo {
+  background: hsl(var(--background));
+  background-position: center;
+  background-size: cover;
+  flex: 1 1 10rem;
+  height: 10rem;
+  position: relative;
+  line-height: 10rem;
+  text-align: center;
+}
+.image-demos .image-demo.selected {
+  box-shadow: 0 0 0 2px rgb(60, 58, 191);
+}
+.image-demos .image-demo .overlay {
+  background: hsl(var(--background-overlay-color));
+  bottom: 0;
+  left: 0;
+  mix-blend-mode: var(--mix-blend-mode);
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1;
 }
 
 /*# sourceMappingURL=main.css.map */

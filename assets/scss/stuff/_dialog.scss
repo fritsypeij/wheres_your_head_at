@@ -1,0 +1,81 @@
+@keyframes dialog-show {
+  from {
+    opacity: 0;
+    transform: translateY(-20%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+@keyframes dialog-backdrop {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+dialog {
+  border: none;
+  border-radius: 0.25rem;
+  box-shadow: 0 1rem 1.5rem rgba(0, 0, 0, 0.2);
+  color: var(--body);
+  min-width: 30rem;
+  padding: 1.5rem;
+
+  &[open] {
+    animation: dialog-show 0.2s ease normal;
+
+    &::backdrop {
+      animation: dialog-backdrop 0.2s ease normal;
+    }
+  }
+
+  &::backdrop {
+    backdrop-filter: blur(8px);
+    background: rgba(0, 0, 0, 0.6);
+    transition: all 0.2s ease;
+  }
+
+  .close-dialog {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    padding: 1rem;
+    position: absolute;
+    right: 0.5rem;
+    top: 0.5rem;
+
+    &:focus {
+      outline: none;
+    }
+
+    .icon {
+      height: 1.2rem;
+      width: 1.2rem;
+    }
+  }
+
+  .dialog-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin: 0;
+    padding: 0 4rem 1.5rem 0;
+  }
+
+  .dialog-actions {
+    align-items: center;
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+  }
+
+  select {
+    width: 100%;
+  }
+}
