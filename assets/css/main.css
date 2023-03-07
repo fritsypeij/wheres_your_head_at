@@ -235,8 +235,8 @@ body {
   align-items: center;
   display: flex;
   gap: 1rem;
-  min-height: 1.4rem;
   margin: 0 0 0.5rem;
+  min-height: 1.4rem;
 }
 .tool .current {
   margin: 0 0 0.5rem;
@@ -336,17 +336,18 @@ button.active {
   flex-wrap: wrap;
   gap: 1rem;
   justify-content: space-between;
-  width: 50vw;
   margin-bottom: 1rem;
+  width: 50vw;
 }
 .image-demos .image-demo {
   background: hsl(var(--background));
   background-position: center;
   background-size: cover;
+  cursor: pointer;
   flex: 1 1 10rem;
   height: 10rem;
-  position: relative;
   line-height: 10rem;
+  position: relative;
   text-align: center;
 }
 .image-demos .image-demo.selected {
