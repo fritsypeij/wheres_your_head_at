@@ -47,18 +47,26 @@
           <input type="color" value="#ffffff" class="content-background-color">
         </div>
         <div class="tool-section">
-          <strong>Headers</strong>
-          <input type="color" class="head-color">
-        </div>
-        <div class="tool-section">
           <strong>Text</strong>
           <label>
-            <input type="radio" name="text-color" value="0 0% 100%">
+            <input type="radio" name="text-color" value="white">
             White
           </label>
           <label>
-            <input type="radio" name="text-color" value="0 0% 0%" checked>
+            <input type="radio" name="text-color" value="black">
             Black
+          </label>
+          <label>
+            <input type="radio" name="text-color" value="auto" checked>
+            Auto contrast
+          </label>
+        </div>
+        <div class="tool-section">
+          <strong>Headers</strong>
+          <input type="color" class="head-color" disabled>
+          <label>
+            <input type="checkbox" class="head-color-auto" checked>
+            Same as text
           </label>
         </div>
       </div>
@@ -82,7 +90,6 @@
             </div>
             <button class="close">Ok</button>
           </dialog>
-          <!-- <input type="range" min="0" max="100" step="1"> -->
           <button class="set-poi">Set Point of interest</button>
         </div>
       </div>

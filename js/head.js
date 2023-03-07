@@ -22,17 +22,19 @@ $(function() {
   var currentImage = 0;
   var currentStyle = 0;
 
-  var backgroundColor = "--background-color: 0 0% 0%;";
-  var headColor = "--head-color: 0 0% 0%;";
-  var textColor = "--text-color: 0 0% 100%;"
-  var backgroundOverlayColor = "--background-overlay-color: 0 0% 0%;";
-  var backgroundMixBlendMode = "--background-mix-blend-mode: normal;";
-  var displayOverlay = "--display-overlay: none;";
-  var poi = "--poi: 50% 50%;";
+  var backgroundColor = [0, 0, 0];
+  var headColor = [0, 0, 0];
+  var headColorAuto = true;
+  var textColor = [0, 0, 100];
+  var backgroundOverlayColor = [0, 0, 0];
+  var backgroundMixBlendMode = "normal";
+  var displayOverlay = "none";
+  var poi = [50, 50];
 
   $(".content-background-color").on("input", getBackgroundColor);
   $("input[name=text-color]").on("input", getTextColor);
   $(".head-color").on("input", getHeadColor);
+  $(".head-color-auto").on("input", getHeadColorAuto);
   $(".overlay-color").on("input", getOverlayColor);
   $(".set-poi").on("click", getPoi);
   $(".mix-blend-mode").on("change", getMixBlendMode);
@@ -44,13 +46,13 @@ $(function() {
   function setStyle() {
     $("style.head-style").html(`
       .head {
-        ${backgroundColor}
-        ${headColor}
-        ${textColor}
-        ${backgroundOverlayColor}
-        ${backgroundMixBlendMode}
-        ${displayOverlay}
-        ${poi}
+        --background-color: ${backgroundColor[0]} ${backgroundColor[1]}% ${backgroundColor[2]}%;
+        --head-color: ${headColor[0]} ${headColor[1]}% ${headColor[2]}%;
+        --text-color: ${textColor[0]} ${textColor[1]}% ${textColor[2]}%;
+        --background-overlay-color: ${backgroundOverlayColor[0]} ${backgroundOverlayColor[1]}% ${backgroundOverlayColor[2]}%;
+        --background-mix-blend-mode: ${backgroundMixBlendMode};
+        --display-overlay: ${displayOverlay};
+        --poi: ${poi[0]}% ${poi[1]}%;
       }
     `);
   }
@@ -86,17 +88,16 @@ $(function() {
 
   function getBackgroundColor() {
     let color = HexToHSL($(".content-background-color").val());
-    let lightness = color.l < 45 ? 100 : 0;
+    let threshold = 55;
 
-    backgroundColor = `--background-color: ${color.h} ${color.s}% ${color.l}%;`;
-    textColor = `--text-color: 0 0% ${lightness}%;`;
-    $(`input[name=text-color]`).filter(`[value="0 0% ${lightness}%"]`).prop('checked', true);
-
-    if (headColor == "--head-color: 0 0% 0%;"  && lightness == 100) {
-      headColor = `--head-color: 0 0% 100%;`
-    } else if (headColor == "--head-color: 0 0% 100%;" && lightness == 0) {
-      headColor = `--head-color: 0 0% 0%;`
+    if ($(`input[name=text-color]:checked`).val() == "auto") {
+      textColor = color.l < threshold ? [0, 0, 100] : [0, 0, 0];
     }
+    if (headColorAuto) {
+      headColor = textColor;
+    }
+
+    backgroundColor = [color.h, color.s, color.l];
 
     setStyle();
   }
@@ -104,29 +105,40 @@ $(function() {
   function getTextColor() {
     let color = $("input[name=text-color]:checked").val();
 
-    textColor = `--text-color: ${color};`;
-    setStyle();
+    if (color != "auto") {
+      textColor = color === "white" ? [0, 0, 100] : [0, 0, 0];
+    }
+
+    getBackgroundColor();
   }
 
   function getHeadColor() {
     let color = HexToHSL($(".head-color").val());
 
-    headColor = `--head-color: ${color.h} ${color.s}% ${color.l}%;`;
+    if (headColorAuto) return;
+
+    headColor = [color.h, color.s, color.l];
     setStyle();
+  }
+
+  function getHeadColorAuto() {
+    headColorAuto = $(".head-color-auto").is(":checked");
+    $(".head-color").prop("disabled", headColorAuto);
+    getBackgroundColor();
   }
 
   function getOverlayColor() {
     let color = HexToHSL($(".overlay-color").val());
 
-    backgroundOverlayColor = `--background-overlay-color: ${color.h} ${color.s}% ${color.l}%;`;
+    backgroundOverlayColor = [color.h, color.s, color.l];
     setStyle();
   }
 
   function getMixBlendMode() {
     let mode = $(".mix-blend-mode").val();
-    displayOverlay = `--display-overlay: ${mode == "none" ? "none" : "block"};`;
+    displayOverlay = mode == "none" ? "none" : "block";
 
-    backgroundMixBlendMode = `--background-mix-blend-mode: ${mode};`;
+    backgroundMixBlendMode = mode;
     setStyle();
   }
 
@@ -148,18 +160,16 @@ $(function() {
       $poiDot.css("left", `${positionX}%`);
       $poiDot.css("top", `${positionY}%`);
 
-      poi = `--poi: ${positionX}% ${positionY}%;`;
+      poi = [positionX, positionY];
       setStyle();
     });
 
     $dialog.find("button").on("click", function() {
-
       $dialog.hide();
     });
   }
 
   function savePreset() {
-    console.log("save", currentImage);
     let name = prompt("Naam van preset");
     if (name == null) return;
 
@@ -170,6 +180,7 @@ $(function() {
       backgroundColor: $(".content-background-color").val(),
       textColor: $("input[name=text-color]:checked").val(),
       headColor: $(".head-color").val(),
+      headColorAuto: $(".head-color-auto").is(":checked"),
       overlayColor: $(".overlay-color").val(),
       mixBlendMode: $(".mix-blend-mode").val(),
       poi: poi
@@ -190,10 +201,12 @@ $(function() {
     setCurrentStyle(currentStyle = preset.style);
 
     $(".content-background-color").val(preset.backgroundColor);
-    $("input[name=text-color][value='" + preset.textColor + "']").prop("checked", true);
     $(".head-color").val(preset.headColor);
+    $(".head-color-auto").prop("checked", preset.headColorAuto || false);
     $(".overlay-color").val(preset.overlayColor);
     $(".mix-blend-mode").val(preset.mixBlendMode);
+    $("input[name=text-color][value='" + preset.textColor + "']").prop("checked", true);
+
     poi = preset.poi;
 
     getData();
@@ -228,12 +241,11 @@ $(function() {
 
   function getData() {
     getBackgroundColor();
+    getHeadColorAuto();
     getHeadColor();
     getOverlayColor();
     getMixBlendMode();
     getTextColor();
-
-    // getPoi();
   }
 
   init();
