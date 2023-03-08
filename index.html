@@ -17,15 +17,55 @@
 
   <body>
     <section class="head">
-      <div class="head-background"></div>
+      <div class="head-background">
+        <div class="ui-tools">
+          <label class="ui-tool">
+            <button class="set-poi">
+              <img src="assets/icons/poi.svg" height="16" width="16" />
+              Focus point
+            </button>
+          </label>
+          <label class="ui-tool">
+            <button class="set-overlay-effect">
+              <img src="assets/icons/themes.svg" height="16" width="16" />
+              Overlay Effect
+            </button>
+          </label>
+        </div>
+      </div>
       <div class="head-content">
+        <div class="ui-tools">
+          <label class="ui-tool">
+            Background color
+            <input type="color" value="#ffffff" class="content-background-color">
+          </label>
+          <div class="ui-tool">
+            Text color
+            <select name="text-color">
+              <option value="white">White</option>
+              <option value="black">Black</option>
+              <option value="auto" selected>Auto contrast</option>
+            </select>
+          </div>
+        </div>
         <div>
-          <h1 contenteditable="true">Head builder</h1>
+          <div class="relative">
+            <h1 contenteditable="true">Head builder</h1>
+            <div class="ui-tools">
+              <div class="ui-tool">
+                <input type="color" class="head-color" disabled>
+                <label>
+                  <input type="checkbox" class="head-color-auto" checked>
+                  Same color as text
+                </label>
+              </div>
+            </div>
+          </div>
           <p contenteditable="true">Rebuild your head cause it aint pretty</p>
           <ul class="tags">
-            <li class="tag">tag</li>
-            <li class="tag">another tag</li>
-            <li class="tag">you're it</li>
+            <li class="tag" contenteditable="true">tag</li>
+            <li class="tag" contenteditable="true">another tag</li>
+            <li class="tag" contenteditable="true">you're it</li>
           </ul>
         </div>
       </div>
@@ -41,33 +81,6 @@
               <button class="browse-style" data-direction="1">next</button>
             </div>
           </div>
-          <div class="tool-section">
-            <strong>Background</strong>
-            <input type="color" value="#ffffff" class="content-background-color">
-          </div>
-          <div class="tool-section">
-            <strong>Text</strong>
-            <label>
-              <input type="radio" name="text-color" value="white">
-              White
-            </label>
-            <label>
-              <input type="radio" name="text-color" value="black">
-              Black
-            </label>
-            <label>
-              <input type="radio" name="text-color" value="auto" checked>
-              Auto contrast
-            </label>
-          </div>
-          <div class="tool-section">
-            <strong>Headers</strong>
-            <input type="color" class="head-color" disabled>
-            <label>
-              <input type="checkbox" class="head-color-auto" checked>
-              Same as text
-            </label>
-          </div>
         </div>
         <div class="tool">
           <h4 class="tool-label">Background</h4>
@@ -77,12 +90,6 @@
               <button class="browse-img" data-direction="-1">prev</button>
               <button class="browse-img" data-direction="1">next</button>
             </div>
-          </div>
-          <div class="tool-section">
-            <button class="set-poi">Set Point of interest</button>
-          </div>
-          <div class="tool-section">
-            <button class="set-overlay-effect">Set Overlay Effect</button>
           </div>
         </div>
       </div>

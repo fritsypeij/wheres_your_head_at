@@ -45,13 +45,12 @@ $(function() {
   var poi = [50, 50];
 
   $(".content-background-color").on("input", getBackgroundColor);
-  $("input[name=text-color]").on("input", getTextColor);
+  $("select[name=text-color]").on("input", getTextColor);
   $(".head-color").on("input", getHeadColor);
   $(".head-color-auto").on("input", getHeadColorAuto);
   $(".overlay-color").on("input", getOverlayColor);
   $(".set-poi").on("click", getPoi);
   $(".set-overlay-effect").on("click", getOverlayEffect);
-  $(".mix-blend-mode").on("change", getMixBlendMode);
   $(".save-preset").on("click", savePreset);
   $(".load-preset").on("click", loadPreset);
   $(".delete-preset").on("click", deletePreset);
@@ -104,7 +103,7 @@ $(function() {
     let color = HexToHSL($(".content-background-color").val());
     let threshold = 55;
 
-    if ($(`input[name=text-color]:checked`).val() == "auto") {
+    if ($("select[name=text-color]").val() == "auto") {
       textColor = color.l < threshold ? [0, 0, 100] : [0, 0, 0];
     }
     if (headColorAuto) {
@@ -117,7 +116,7 @@ $(function() {
   }
 
   function getTextColor() {
-    let color = $("input[name=text-color]:checked").val();
+    let color = $("select[name=text-color]").val();
 
     if (color != "auto") {
       textColor = color === "white" ? [0, 0, 100] : [0, 0, 0];
@@ -179,14 +178,6 @@ $(function() {
 
     backgroundOverlayColor = [color.h, color.s, color.l];
     setStyle();
-  }
-
-  function getMixBlendMode() {
-    // let mode = $(".mix-blend-mode").val();
-    // displayOverlay = mode == "none" ? "none" : "block";
-
-    // backgroundMixBlendMode = mode;
-    // setStyle();
   }
 
   function getPoi() {
